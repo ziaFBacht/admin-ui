@@ -5,7 +5,7 @@ import SignUpPage from "./pages/signUp"
 function App() {
   return (
     <>
-      <SignUpPage />
+      <SignInPage />
     </>
   );
 }
