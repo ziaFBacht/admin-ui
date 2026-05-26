@@ -1,6 +1,6 @@
 import React from "react";
-import UserCard from "./UserCard";
-import { users, newUsers, getUsers } from "./Services";
+import UserCard from "./latihan/UserCard";
+import { users, newUsers, getUsers } from "./latihan/Services";
 
 function Exercise() {
     getUsers()
