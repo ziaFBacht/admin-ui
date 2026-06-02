@@ -8,38 +8,47 @@ import SettingSVG from "../../assets/Icons/Settings.svg?react";
 import DetailSVG from "../../assets/Icons/Icon.svg?react";
 import ChevronRightSVG from "../../assets/Icons/chevrons-right.svg?react";
 import LogoutSVG from "../../assets/Icons/Icon2.svg?react";
+import AdobeSVG from "../../assets/Icons/Adobe.svg?react";
+import FigmaSVG from "../../assets/Icons/Figma.svg?react";
+import FoodSVG from "../../assets/Icons/Food.svg?react";
+import GamepadSVG from "../../assets/Icons/gamepad-2.svg?react";
+import HouseSVG from "../../assets/Icons/Housing.svg?react";
+import MovieSVG from "../../assets/Icons/Movie.svg?react";
+import OtherSVG from "../../assets/Icons/Others.svg?react";
+import ShoppingSVG from "../../assets/Icons/Shopping.svg?react";
+import TransportSVG from "../../assets/Icons/Trasnport.svg?react";
+import ArrowRightSVG from "../../assets/Icons/arrow-right.svg?react";
+import ArrowDownSVG from "../../assets/Icons/Downarrow.svg?react";
+import ArrowUpSVG from "../../assets/Icons/Uparrow.svg?react";
+
+const createIcon =
+  (SVG) =>
+  ({ size = 24, color = "currentColor", ...props }) =>
+    <SVG width={size} height={size} stroke={color} {...props} />;
 
 const Icon = {
-  Overview: ({ size = 24, color = "currentColor", ...props }) => (
-    <OverviewSVG width={size} height={size} stroke={color} {...props} />
-  ),
-  Transaction: ({ size = 24, color = "currentColor", ...props }) => (
-    <TransactionSVG width={size} height={size} stroke={color} {...props} />
-  ),
-  Balance: ({ size = 24, color = "currentColor", ...props }) => (
-    <BalanceSVG width={size} height={size} stroke={color} {...props} />
-  ),
-  Bill: ({ size = 24, color = "currentColor", ...props }) => (
-    <BillSVG width={size} height={size} stroke={color} {...props} />
-  ),
-  Expense: ({ size = 24, color = "currentColor", ...props }) => (
-    <ExpenseSVG width={size} height={size} stroke={color} {...props} />
-  ),
-  Goal: ({ size = 24, color = "currentColor", ...props }) => (
-    <GoalSVG width={size} height={size} stroke={color} {...props} />
-  ),
-  Setting: ({ size = 24, color = "currentColor", ...props }) => (
-    <SettingSVG width={size} height={size} stroke={color} {...props} />
-  ),
-  Detail: ({ size = 24, color = "currentColor", ...props }) => (
-    <DetailSVG width={size} height={size} stroke={color} {...props} />
-  ),
-  ChevronRight: ({ size = 24, color = "currentColor", ...props }) => (
-    <ChevronRightSVG width={size} height={size} stroke={color} {...props} />
-  ),
-  Logout: ({ size = 24, color = "currentColor", ...props }) => (
-    <LogoutSVG width={size} height={size} stroke={color} {...props} />
-  ),
+  Overview: createIcon(OverviewSVG),
+  Transaction: createIcon(TransactionSVG),
+  Balance: createIcon(BalanceSVG),
+  Bill: createIcon(BillSVG),
+  Expense: createIcon(ExpenseSVG),
+  Goal: createIcon(GoalSVG),
+  Setting: createIcon(SettingSVG),
+  Detail: createIcon(DetailSVG),
+  ChevronRight: createIcon(ChevronRightSVG),
+  Logout: createIcon(LogoutSVG),
+  Adobe: createIcon(AdobeSVG),
+  Figma: createIcon(FigmaSVG),
+  Food: createIcon(FoodSVG),
+  Gamepad: createIcon(GamepadSVG),
+  House: createIcon(HouseSVG),
+  Movie: createIcon(MovieSVG),
+  Other: createIcon(OtherSVG),
+  Shopping: createIcon(ShoppingSVG),
+  Transport: createIcon(TransportSVG),
+  ArrowRight: createIcon(ArrowRightSVG),
+  ArrowDown: createIcon(ArrowDownSVG),
+  ArrowUp: createIcon(ArrowUpSVG),
 };
 
 export default Icon;
