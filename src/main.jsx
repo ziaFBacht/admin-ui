@@ -1,11 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
 import App from './App.jsx'
-import PostCards from './latihan/PostCards.jsx'
+import './index.css'
+import { ThemeContextProvider } from './context/themeContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App/>
+    <ThemeContextProvider>
+      <App />
+    </ThemeContextProvider>
   </StrictMode>
 )
