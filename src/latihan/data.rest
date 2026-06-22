@@ -1,0 +1,13 @@
+### get goals
+GET https://jwt-auth-eight-neon.vercel.app/goals
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwNCwibmFtZSI6IkZBSVoiLCJlbWFpbCI6IjExMTIwMjMxNTA0NEBtaHMuZGludXMuYWMuaWQiLCJpYXQiOjE3ODA5ODc1MDMsImV4cCI6MTc4MTA3MzkwM30.mZEwQRlrDG91_cIQoNffza-4ztx-jjqbyzrFEva1264
+
+### post goals
+POST https://jwt-auth-eight-neon.vercel.app/goals
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIwNCwibmFtZSI6IkZBSVoiLCJlbWFpbCI6IjExMTIwMjMxNTA0NEBtaHMuZGludXMuYWMuaWQiLCJpYXQiOjE3ODA5ODc1MDMsImV4cCI6MTc4MTA3MzkwM30.mZEwQRlrDG91_cIQoNffza-4ztx-jjqbyzrFEva1264
+Content-Type: application/json
+
+{
+  "target_amount": 10500,
+  "present_amount": 3500
+}
