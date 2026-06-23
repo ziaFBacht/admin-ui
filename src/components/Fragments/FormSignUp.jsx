@@ -1,47 +1,136 @@
 import React from 'react'
 import LabeledInput from '../Elements/LabeledInput'
-import Checkbox from '../Elements/CheckBox'
+import CheckBox from '../Elements/CheckBox'
 import Button from '../Elements/Button'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import AppSnackbar from '../Elements/AppSnackbar';
 
-function FormSignIn() {
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+const SignUpSchema = Yup.object().shape({
+  name: Yup.string().required("Nama wajib diisi"),
+  email: Yup.string().email("Email tidak valid").required("Email wajib diisi"),
+  password: Yup.string().required("Password wajib diisi"),
+  status: Yup.boolean().required("Harus setuju")
+});
+
+
+function FormSignUp() {
+  const navigate = useNavigate();
+
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success",
+  }); 
+  
+  const handleCloseSnackbar = () => {
+    setSnackbar((prev) => ({ ...prev, open: false }));
+  };
+
   return (
     <>
         {/* form start */}
         <div className="mt-16">
-          <form action="">
-            <div className="mb-6">
-              <LabeledInput 
-              label="Name"
-              id="name"
-              type="name"
-              placeholder="Faiz Bachtiar"
-              name="name"
-              />
-            </div>
-            <div className="mb-6">
-              <LabeledInput 
-              label="Email Address"
-              id="email"
-              type="email"
-              placeholder="hello@example.com"
-              name="email"
-              />
-            </div>
-            <div className="mb-6">
-              <LabeledInput 
-              label="Password"
-              id="password"
-              type="password"
-              placeholder="•••••••••••••"
-              name="password"
-              />
-            </div>
-            <label classname="text-5xl">By continuing, you agree to our terms of service.</label>
-            <br />
-            <Button type="submit" variant="primary">Login</Button>
-          </form>
+          <Formik
+            initialValues={{
+              name: "",
+              email: "",
+              password: "",
+              status: false,
+            }}
+            validationSchema={SignUpSchema}
+            onSubmit={async (values, { setSubmitting }) => {
+              setSnackbar({ open: true, message: "Akun telah dibuat!", severity: "success" });
+              navigate('/login')
+            }}
+          >
+          {({ isSubmitting }) => (
+            <Form>
+              {/* NAME */}
+              <div className="mb-6">
+                <Field name="name">
+                  {({ field }) => (
+                    <LabeledInput
+                      {...field}
+                      id="name"
+                      type="name"
+                      label="Name"
+                      placeholder="John Doe"
+                    />
+                  )}
+                </Field>
+                <ErrorMessage
+                  name="name"
+                  component="p"
+                  className="text-red-500 text-xs mt-1"
+                /> 
+              </div>
+
+              {/* EMAIL */}
+              <div className="mb-6">
+                <Field name="email">
+                  {({ field }) => (
+                    <LabeledInput
+                      {...field}
+                      id="email"
+                      type="email"
+                      label="Email Address"
+                      placeholder="hello@example.com"
+                    />
+                  )}
+                </Field>
+                <ErrorMessage
+                  name="email"
+                  component="p"
+                  className="text-red-500 text-xs mt-1"
+                />  
+              </div>
+
+              {/* PASSWORD */}
+              <div className="mb-6">
+                <Field name="password">
+                  {({ field }) => (
+                    <LabeledInput
+                      {...field}
+                      id="password"
+                      type="password"
+                      label="Password"
+                      placeholder="●●●●●●●●●●●●●●"
+                    />
+                  )}
+                </Field> 
+                <ErrorMessage
+                  name="password"
+                  component="p"
+                  className="text-red-500 text-xs mt-1"
+                /> 
+              </div>
+
+              {/* CHECKBOX */}
+              <div className="mb-3">
+                <Field name="status">
+                  {({ field }) => (
+                    <CheckBox
+                      {...field}
+                      id="status"
+                      type="checkbox"
+                      checked={field.value}
+                      label="I agree to the Terms of Service"
+                    />
+                  )}
+                </Field>
+              </div>
+
+              {/* BUTTON */}
+              <Button>{isSubmitting ? "Loading..." : "Register"}</Button>
+            </Form>
+          )}
+          </Formik>
         </div>
+
         {/* form end */}
         {/* teks start */}
         <div className="my-9 px-7 flex flex-col justify-center items-center text-xs text-gray-03">
@@ -91,4 +180,4 @@ function FormSignIn() {
   )
 }
 
-export default FormSignIn
+export default FormSignUp
