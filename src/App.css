@@ -28,6 +28,10 @@ html {
   --color-special-red2: #b83016;
 }
 
+.dark-mode {
+  --color-special-mainBg: #383838;
+}
+
 .theme-green {
   --color-primary: #299d91;
 }

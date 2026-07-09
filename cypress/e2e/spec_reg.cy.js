@@ -23,6 +23,8 @@ describe("User login", () => {
       .type("123456")
       .should("have.value", "123456");
 
+    cy.get('[type="checkbox"]').check()
+
     cy.get("button").contains("Register").click();
 
     cy.get("button").contains("Login")  

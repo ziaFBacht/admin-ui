@@ -17,7 +17,7 @@ const SignUpSchema = Yup.object().shape({
 });
 
 
-function FormSignUp() {
+function FormSignUp({ onSubmit }) {
   const navigate = useNavigate();
 
   const [snackbar, setSnackbar] = useState({
@@ -43,8 +43,11 @@ function FormSignUp() {
             }}
             validationSchema={SignUpSchema}
             onSubmit={async (values, { setSubmitting }) => {
-              setSnackbar({ open: true, message: "Akun telah dibuat!", severity: "success" });
-              navigate('/login')
+              try {
+                await onSubmit(values.name, values.email, values.password);
+              } finally {
+                setSubmitting(false);
+              }
             }}
           >
           {({ isSubmitting }) => (

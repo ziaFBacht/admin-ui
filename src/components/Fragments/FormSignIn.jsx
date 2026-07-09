@@ -2,6 +2,7 @@ import React from 'react'
 import LabeledInput from '../Elements/LabeledInput'
 import CheckBox from '../Elements/CheckBox'
 import Button from '../Elements/Button'
+import LightDarkButton from '../Elements/LightDarkButton'
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 
@@ -142,6 +143,7 @@ function FormSignIn({ onSubmit }) {
             Create an account
           </Link>
         </div>
+        <LightDarkButton />
         {/* link end */}
     </>
   )

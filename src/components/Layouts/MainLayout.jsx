@@ -8,6 +8,10 @@ import { ThemeContext } from "../../context/themeContext";
 import { AuthContext } from "../../context/authContext";
 import { logoutService } from "../../services/authService";
 
+import LightDarkButton from "../Elements/LightDarkButton";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from '@mui/material/CircularProgress';
+
 function MainLayout(props) {
   const { children } = props;
 
@@ -32,8 +36,10 @@ function MainLayout(props) {
   ];
 
   const { user, logout} = useContext(AuthContext);
-
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+ 
   const handleLogout = async () => {
+    setIsLoggingOut(true);
     try {
       await logoutService();
       logout(); 
@@ -42,11 +48,22 @@ function MainLayout(props) {
       if (err.status === 401) {
         logout();
       }
+    } finally {
+      setIsLoggingOut(false);
     }
   };
-  
+
   return (
     <>
+    <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoggingOut}
+      >
+        <div className="flex flex-col items-center gap-3">
+          <CircularProgress color="inherit" />
+          <span>Logging Out</span>
+        </div>
+      </Backdrop>
 	    <div className={`flex min-h-screen ${theme.name}`}>
 			<aside className="bg-defaultBlack w-28 sm:w-64 text-special-bg2
       flex flex-col justify-between px-7 py-12"
@@ -85,6 +102,7 @@ function MainLayout(props) {
                 ></div>
               ))}
             </div>
+            <LightDarkButton />
           </div>
         <div>
           <div onClick={handleLogout} className="cursor-pointer">
