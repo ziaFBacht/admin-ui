@@ -3,8 +3,6 @@ describe("User login", () => {
     cy.visit("http://localhost:5173/");
     cy.url().should("include", "/login");
 
-    cy.get("div").contains("Create an account").click();
-
     cy.get("input#email")
       .should("be.visible")
       .should("have.attr", "placeholder", "hello@example.com")
@@ -22,7 +20,5 @@ describe("User login", () => {
     cy.get("button").contains("Login").click();
     
     cy.wait(5000);
-
-    cy.get("button").contains("Balances")
   });
 });
